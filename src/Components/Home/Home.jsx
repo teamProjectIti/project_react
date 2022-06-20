@@ -6,21 +6,21 @@ import { Link } from "react-router-dom";
 import axioxInstance from "../../axioxConfic/axioxConfic";
 
 const Home = (props) => {
-
-
   const [move, setMove] = useState([]);
   //call Api
   useEffect(() => {
     axioxInstance
       .get("")
       .then((res) => {
-        console.log(res.data);
-        setMove(res.data);
+        console.log(res.data.results);
+        setMove(res.data.results);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  console.log("this is move");
+  console.log(move);
   //post data
   // axios.post("https://fakestoreapi.com/products",{id:1,name:"one", age:20},{header_Token}).then().catch();
   return (
@@ -31,33 +31,19 @@ const Home = (props) => {
             <div className="spinner-border " role="status"></div>
           </div>
         )} */}
-        
 
-        {
-        
-        // console.log(move.results);
-    //     move.results.map((item)=>{
-    //         return (
-    //         <div className="col" key={item.id}>
-    //                 {item.id}
-    //         </div>
-    //         )
-    // });
-        move.map((product.results) => {
+        {move.map((product) => {
           return (
             <div className="col" key={product.id}>
               <div className="card">
-               
                 <div className="card-body">
                   <h5 className="card-title">{product.title}</h5>
                 </div>
               </div>
             </div>
           );
-        })
-    }
+        })}
       </div>
-      
     </>
   );
 };
